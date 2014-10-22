@@ -1,79 +1,88 @@
-<!DOCTYPE html>
-<html>
-
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Pager : 分页组件，支持参数配置">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Pager</title>
-  </head>
-
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/ajccom/pager">View on GitHub</a>
-
-          <h1 id="project_title">Pager</h1>
-          <h2 id="project_tagline">分页组件，支持参数配置</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/ajccom/pager/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/ajccom/pager/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Pager maintained by <a href="https://github.com/ajccom">ajccom</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="jquery.js"></script>
+  <script src="pager.js"></script>
+</head>
+<body>
+  <div class="demo">
+    <pre>
+/**
+  1  2 ... 5  6  7  8  9 ... 12 13
+  \  /     \  /  |  \  /     \  /
+   f1       f2  当前 f3       f4
+**/
+    </pre>
+    <label><span>total:</span><input type="text" placeholder="总页数" id="total" /></label>
+    <label><span>current:</span><input type="text" placeholder="当前页数" id="current" /></label>
+    <label><span>f1:</span><input type="text" placeholder="前X页" id="f1" /></label>
+    <label><span>f2:</span><input type="text" placeholder="当前页前X页" id="f2" /></label>
+    <label><span>f3:</span><input type="text" placeholder="当前页后X页" id="f3" /></label>
+    <label><span>f4:</span><input type="text" placeholder="后X页" id="f4" /></label>
+    <label><span>url:</span><input type="text" placeholder="跳转URL" id="url" /></label>
+    <label><span>param:</span><input type="text" placeholder="URL参数" id="param" /></label>
+    <label><button>CREATE</button></label>
+    <div class="pager"></div>
+  </div>
+  <!--div class="pager">
+    <b class="cmPager" data-f1="2" data-f2="3" data-f3="4" data-f4="2" data-param="pageId" data-current="100" data-total="122" data-url="url"></b>
+  </div>
+  <div class="pager">
+    <div class="cmPager" data-f1="5" data-f4="5" data-current="100" data-total="122"></div>
+  </div>
+  <div class="pager">
+    <div class="cmPager" data-f1="1" data-f4="1" data-current="119" data-total="122"></div>
+  </div>
+  <div class="pager">
+    <div class="cmPager" data-f2="4" data-f3="4" data-current="3" data-total="13"></div>
+  </div-->
+  <style>
+  * {margin: 0 auto;}
+  ul, li {list-style: none}
+  .demo {margin: 0 auto; width: 1000px; padding: 10px 0;}
+  .demo label {display: inline-block; width: 250px; line-height: 30px; height: 30px; margin: 0 0 10px}
+  .demo input {width: 150px; border: 1px solid #bbb; height: 30px; vertical-align: top}
+  .demo label span {display: inline-block; width: 60px; vertical-align: top}
+  .pager {padding: 10px 0}
+  .cmPagerReady {height: 30px; line-height: 30px;}
+  .cmPagerReady ul {display: inline}
+  .cmPagerReady li {display: inline-block; *display: inline; *zoom: 1; height: 30px; margin: 0 5px; background: #fff; color: #000; text-align: center; vertical-align: top}
+  .cmPagerReady li a {display: inline-block; *display: inline; *zoom: 1; padding: 0 5px; height: 30px; line-height: 30px; text-decoration: none; color: #000}
+  .cmPagerReady .hide {display: none}
+  .cmPagerReady li.current a,
+  .cmPagerReady li a:hover {background: #000; color: #fff}
+  </style>
+  <script>
+  "use strict"
+  ;(function () {
+    var create = function () {
+      var total = $('#total').val(),
+          current = $('#current').val(),
+          f1 = $('#f1').val(),
+          f2 = $('#f2').val(),
+          f3 = $('#f3').val(),
+          f4 = $('#f4').val(),
+          url = $('#url').val(),
+          param = $('#param').val();
+      $('.pager').html('<b class="cmPager"></b>');
+      VL.pager.ini({
+        total: total || 200,
+        current: current || 100,
+        f1: f1,
+        f2: f2,
+        f3: f3,
+        f4: f4,
+        url: url || 'url',
+        param: param
+      });
+    }
     
-
-  </body>
+    $('button').on('click', function () {
+      create();
+    });
+  }());
+  </script>
+</body>
 </html>
