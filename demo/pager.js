@@ -1,27 +1,28 @@
 'use strict'
 ;(function () {
   var Pager = {
-    handle: function () {
+    handle: function (args) {
       var that = this;
       $('.cmPager').each(function () {
-        that._ini(this);
+        that._ini(this, args);
       });
     },
-    _ini: function (dom) {
+    _ini: function (dom, args) {
+      args = args || {};
       var s = $(dom),
           /**
             1  2 ... 5  6  7  8  9 ... 12 13
             \  /     \  /  |  \  /     \  /
              f1       f2  当前 f3       f4
           **/
-          f1 = s.data('f1') || 0,//如上注释，f1区域个数
-          f2 = s.data('f2') || 2,
-          f3 = s.data('f3') || 2,
-          f4 = s.data('f4') || 0,
-          param = s.data('param') || 'page',
-          current = parseInt(s.data('current'), 10),
-          total = parseInt(s.data('total'), 10),
-          url = s.data('url') || '',
+          f1 = parseInt(args.f1 || s.data('f1') || 0, 10),//如上注释，f1区域个数
+          f2 = parseInt(args.f2 || s.data('f2') || 2, 10),
+          f3 = parseInt(args.f3 || s.data('f3') || 2, 10),
+          f4 = parseInt(args.f4 || s.data('f4') || 0, 10),
+          param = args.param || s.data('param') || 'page',
+          current = parseInt(args.current || s.data('current'), 10),
+          total = parseInt(args.total || s.data('total'), 10),
+          url = args.url || s.data('url') || '',
           html = '<ul class="cmPagerReady">',
           i = 0,
           l = 0,
@@ -29,7 +30,6 @@
           pos = 0,
           t = f2 + f3 + 1,
           delta = 0;
-          
       current = current <= total ? (current > 0 ? current : 1) : total;
       /////////////////////////////////////
       var pagerHTML = 
@@ -137,8 +137,8 @@
       }
       return url;
     },
-    ini: function () {
-      this.handle();
+    ini: function (args) {
+      this.handle(args);
     }
   };
   
